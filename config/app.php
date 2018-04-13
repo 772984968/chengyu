@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //IDE提示助手
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        //用户权限管理
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
     ],
 
@@ -227,6 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        //用户权限管理
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 

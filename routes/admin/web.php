@@ -10,9 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//后台URI统一路由
-include_once __DIR__ . '/admin/web.php';
 
-Route::get('/', function () {
-    return view('welcome');
+//
+
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+
+
+        //后台资源首页
+        Route::any('/','IndexController@index')->name('index');
+        //后台欢迎页
+        Route::get('welcome','IndexController@welcome');
+        //后台登陆
+        Route::resource('login','LoginController');
+         Route::get('test', function () {
+         });
 });
