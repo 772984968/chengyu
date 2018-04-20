@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//短信类路由
+Route::group(['prefix'=>'sms','namespace'=>'Api'],function(){
+    //注册短信
+    Route::post('/register','SmsController@register');
+    //找回密码
+    Route::get('find','SmsController@find');
+    //找回修改密码
+    Route::get('modify','SmsController@modify');
+});

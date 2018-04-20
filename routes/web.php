@@ -16,3 +16,4 @@ include_once __DIR__ . '/admin/web.php';
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::post('register','SmsController@register');
