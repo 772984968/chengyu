@@ -1,0 +1,9 @@
+<?php
+Route::group(['prefix'=>'user','namespace'=>'\Api'],function(){
+    //用户首页
+    Route::post('index','UserController@index');
+    //用户登陆
+    Route::post('login','UserController@login');
+    //用户登出
+    Route::get('logout','UserController@logout');
+});
