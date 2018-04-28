@@ -26,4 +26,10 @@ class UserController extends AuthController
 
 
     }
+    //刷新令牌
+    public function  refresh(){
+        return parent::refresh();
+
+
+    }
 }

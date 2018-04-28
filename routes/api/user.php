@@ -6,4 +6,6 @@ Route::group(['prefix'=>'user','namespace'=>'\Api'],function(){
     Route::post('login','UserController@login')->name('user.login');
     //用户登出
     Route::get('logout','UserController@logout');
+    //刷新令牌
+    Route::get('refresh','UserController@refresh');
 });
