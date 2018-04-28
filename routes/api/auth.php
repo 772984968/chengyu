@@ -1,0 +1,13 @@
+<?php
+Route::group([
+    'prefix'=>'auth',
+    'middleware'=>'api',
+    'namespace'=>'\Api'
+],function(){
+    //更新token
+    Route::post('refresh','AuthController@index');
+    //权限登陆
+    Route::post('login','AuthController@login');
+    //权限登出
+    Route::get('logout','AuthController@logout');
+});

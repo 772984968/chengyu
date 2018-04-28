@@ -20,5 +20,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'password' => bcrypt('password'), // secret
         'phone'=>$faker->phoneNumber,
         'remember_token' => str_random(10),
+        'username'=>$faker->phoneNumber,
     ];
 });
