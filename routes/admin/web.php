@@ -17,7 +17,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
 
         //后台资源首页
-        Route::any('/','IndexController@index')->name('index');
+        Route::get('/','IndexController@index')->name('index');
         //后台欢迎页
         Route::get('welcome','IndexController@welcome');
         //后台登陆

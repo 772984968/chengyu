@@ -171,6 +171,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //用户权限管理
         Zizaco\Entrust\EntrustServiceProvider::class,
+        //dingoAPI管理
+        Dingo\Api\Provider\LaravelServiceProvider::class,
 
     ],
 
