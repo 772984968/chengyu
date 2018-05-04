@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use Dingo\Api\Routing\Helpers;
 use Elasticsearch\Common\Exceptions\Unauthorized401Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,12 +13,11 @@ use Spatie\Permission\Exceptions\UnauthorizedException;
 class AuthController extends Controller
 {
 
+    use Helpers;
     public  function  __construct()
     {
-        if (!auth('api')->check()){
-
-        }
-           }
+        $this->middleware('auth:api')->except(['login']);
+    }
 
 
      //刷新token
@@ -42,15 +42,25 @@ class AuthController extends Controller
         if (!$token=auth('api')->attempt($credentials)){
             return response()->json(['error'=>'用户名或密码不正确'],401);
         }
-
         return $this->respondWithToken($token);
 
     }
 
     //退出
     public function logout(){
-                auth('api')->logout();
-        return response()->json(['logout']);
+             auth('api')->logout();
+             return $this->arrayResponse();
+
+    }
+    public function arrayResponse($message='success',$status=200,$data=[]){
+        return $this->response()->array(
+            [
+                'message' => $message,
+               'status_code' => $status,
+                'data'=>$data,
+
+            ]
+        );
 
     }
 

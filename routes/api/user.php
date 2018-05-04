@@ -1,11 +1,13 @@
 <?php
-Route::group(['prefix'=>'user','namespace'=>'\Api'],function(){
+//用户登陆
+$api->post('login','UserController@login')->name('user.login');
+//权限验证
+$api->group(['middleware' => 'auth:api'], function ($api) {
     //用户首页
-    Route::post('index','UserController@index');
-    //用户登陆
-    Route::post('login','UserController@login')->name('user.login');
+    $api->get('index','UserController@index');
     //用户登出
-    Route::get('logout','UserController@logout');
+    $api->get('logout','UserController@logout');
     //刷新令牌
-    Route::get('refresh','UserController@refresh');
+    $api->get('refresh','UserController@refresh');
+
 });
