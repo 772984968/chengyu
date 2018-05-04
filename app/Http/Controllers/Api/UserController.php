@@ -18,6 +18,7 @@ class UserController extends AuthController
 
     //用户首页
     public function index(){
+        return $this->arrayResponse();
     }
     //用户登陆
     public function  login(Request $request){
