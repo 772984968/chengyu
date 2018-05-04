@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\AdminLogin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LoginController extends Controller
+class LoginController extends BaseController
 {
-    /**
-     * 登陆首页.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public  function index(){
+    public function __construct()
+    {
+        return ;
+    }
 
+    public  function index(){
         return view('admin.login.index');
     }
     /**
@@ -21,11 +21,23 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function login(AdminLogin $request)
     {
-       return redirect(route('index'));
+         if (auth('admin')->attempt($request->validated())){
+               flash('登陆成功')->success();
+              // auth('admin')->login();
+               return redirect(route('index'));
+        }else{
+            flash('账户与密码不匹配')->error();
+        return    redirect()->route('login');
+
+        }
+
+       return  view('admin.index.index');
 
     }
+
+
     /**
      * 用户退出
      * Remove the specified resource from storage.

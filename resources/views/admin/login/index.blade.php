@@ -23,14 +23,15 @@
                     <strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong>
                 </div>
             </div>
+
             <div class="col-sm-5">
-                <form method="post" action="{{url('admin/login')}}">
+                @include('admin.message._error')
+                <form method="post" action="{{route('login')}}">
                     {{ csrf_field() }}
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-t-md">登录到H+后台主题UI框架</p>
-                    <input type="text" class="form-control uname" placeholder="用户名" />
-                    <input type="password" class="form-control pword m-b" placeholder="密码" />
-                    <a href="#">忘记密码了？</a>
+                    <input type="text" class="form-control uname" placeholder="用户名" name="username" value="{{old('username')}}" />
+                    <input type="password" class="form-control pword m-b" name="password" placeholder="密码" />
                     <button class="btn btn-success btn-block">登录</button>
                 </form>
             </div>
@@ -41,8 +42,7 @@
             </div>
         </div>
     </div>
-</body>
-
-
-<!-- Mirrored from www.zi-han.net/theme/hplus/login_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:52 GMT -->
-</html>
+  @component('admin/public/footer')
+    @slot('js')
+     @endslot
+@endcomponent

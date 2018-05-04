@@ -15,13 +15,14 @@
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
+    //登陆逻辑
+    require_once __DIR__.'/login.php';
 
         //后台资源首页
         Route::get('/','IndexController@index')->name('index');
         //后台欢迎页
         Route::get('welcome','IndexController@welcome');
-        //后台登陆
-        Route::resource('login','LoginController');
-         Route::get('test', function () {
-         });
+
+
+
 });
