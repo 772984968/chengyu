@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
-use App\Models\User;
 use Dingo\Api\Routing\Helpers;
-use Elasticsearch\Common\Exceptions\Unauthorized401Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
-use Spatie\Permission\Exceptions\UnauthorizedException;
-
+use Dingo\Api\Exception\StoreResourceFailedException;
+use Validator;
 class AuthController extends Controller
 {
 
@@ -37,7 +33,6 @@ class AuthController extends Controller
     }
     //登陆
     public function login(Request $request){
-
         $credentials=request(['username','password']);
         if (!$token=auth('api')->attempt($credentials)){
             return response()->json(['error'=>'用户名或密码不正确'],401);
@@ -61,7 +56,13 @@ class AuthController extends Controller
 
             ]
         );
-
     }
 
-}
+    public function  checkValidate($request, $rules, $messages=[], $customAttributes=[]){
+        $validator = Validator::make($request->all(),$rules,$messages,$customAttributes);
+        if ($validator->fails()) {
+            throw new StoreResourceFailedException('Validation Error', $validator->errors());
+        }
+        return $validator->getData();
+         }
+  }

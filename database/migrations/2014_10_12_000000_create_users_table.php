@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->comment('id');
             $table->string('password')->comment('用户密码');
             $table->string('phone')->comment('手机号码');
+            $table->integer('credits')->default(0)->comment('积分');
             $table->rememberToken();
             $table->timestamps();
         });

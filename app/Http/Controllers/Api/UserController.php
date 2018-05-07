@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use App\Models\Idiom;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use function MongoDB\BSON\toJSON;
@@ -16,6 +15,21 @@ class UserController extends AuthController
        return parent::__construct();
     }
 
+    //回顾列表
+    public function review(){
+        $user=auth('api')->user();
+        if ($user->review){
+            $idiom_ids=explode(',',$user->review->idiom_ids);
+            $rs=Idiom::select('id','name')->findMany($idiom_ids);
+            return $this->arrayResponse('success','200',$rs);
+        }
+        return $this->arrayResponse();
+    }
+    //个人中心
+    public function personal(){
+        $user=auth('api')->user();
+        return $this->arrayResponse('success','200',$user);
+    }
     //用户首页
     public function index(){
         return $this->arrayResponse();
@@ -36,7 +50,7 @@ class UserController extends AuthController
     }
     //刷新数据
     public function idiom(Request $request){
-       $rs=DB::table('idiom')->offset($request->offset)->limit($request->limit)->select('id','name')->get();
+       $rs=DB::table('idioms')->offset($request->offset)->limit($request->limit)->select('id','name')->get();
         $client = new Client();
       foreach ($rs as $vo){
 
@@ -56,9 +70,7 @@ class UserController extends AuthController
           if (!empty($rs->result->thesaurus)){
               $thesaurus=$rs->result->thesaurus;
           }
-
-
-          $res=DB::table('idiom')->where('id',$vo->id)->update(['antonym'=>implode(',',$antonym),'thesaurus'=>implode(',',$thesaurus)]);
+          $res=DB::table('idioms')->where('id',$vo->id)->update(['antonym'=>implode(',',$antonym),'thesaurus'=>implode(',',$thesaurus)]);
       }
         }
 }
