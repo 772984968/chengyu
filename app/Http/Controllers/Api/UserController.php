@@ -15,16 +15,7 @@ class UserController extends AuthController
        return parent::__construct();
     }
 
-    //回顾列表
-    public function review(){
-        $user=auth('api')->user();
-        if ($user->review){
-            $idiom_ids=explode(',',$user->review->idiom_ids);
-            $rs=Idiom::select('id','name')->findMany($idiom_ids);
-            return $this->arrayResponse('success','200',$rs);
-        }
-        return $this->arrayResponse();
-    }
+
     //个人中心
     public function personal(){
         $user=auth('api')->user();

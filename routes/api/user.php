@@ -11,11 +11,6 @@ $api->group(['middleware' => 'auth:api'], function ($api) {
     $api->get('refresh','UserController@refresh');
     //个人中心
     $api->get('personal','UserController@personal');
-    //回顾列表
-    $api->get('review','ReviewController@review');
-    //添加回顾
-    $api->post('review','ReviewController@setReview');
-
     //收藏列表
     $api->get('collection','CollectionController@collection');
     //添加收藏

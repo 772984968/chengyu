@@ -9,12 +9,11 @@ class CollectionController extends AuthController
     //收藏列表
     public function collection(){
         $user=auth('api')->user();
-        if ($user->collection){
-            $idiom_ids=explode(',',$user->collection->idiom_ids);
-            $rs=Idiom::select('id','name','created_at')->findMany($idiom_ids);
-            return $this->arrayResponse('success','200',$rs);
+        $colletcs=Collection::where('user_id',$user->id)->with('level','idiom')->get();
+        if ($colletcs)
+        {
+            return $this->arrayResponse('success','200',$colletcs);
         }
-        return $this->arrayResponse();
     }
     //添加收藏
     public function setCollection(Request $request){

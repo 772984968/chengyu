@@ -53,8 +53,8 @@ class User extends Authenticatable implements JWTSubject
 
     }
     //收藏
-    public function collection(){
-        return $this->hasMany(Collection::class);
-
+    public function collect(){
+        return $this->belongsToMany(Collection::class,'user_collections');
     }
+
 }

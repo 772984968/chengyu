@@ -17,6 +17,7 @@ class CreateCollectionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->comment('用户ID');
             $table->integer('idiom_id')->comment('成语ID');
+            $table->integer('level_id')->comment('难度等级ID');
             $table->timestamps();
         });
     }

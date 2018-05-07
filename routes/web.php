@@ -16,8 +16,3 @@ include_once __DIR__ . '/admin/web.php';
 Route::get('/', function () {
         return view('welcome');
 });
-//Route::post('register','SmsController@register');
-
-Route::group(['prefix'=>'user','namespace'=>'\Api'],function(){
-    Route::get('idiom',"UserController@idiom");
-});

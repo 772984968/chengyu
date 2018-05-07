@@ -24,7 +24,7 @@ class ReviewController extends AuthController
         $re=Review::where('user_id',auth('api')->id())->first();
 
         if (in_array($data['idiom_id'],explode(',',$re->idiom_ids))){
-          $this->response()->error("该成语已在收藏列表中",402);
+          $this->response()->error("该成语已在列表中",402);
         }
         $re->idiom_ids=$re->idiom_ids.','.$data['idiom_id'];
         if ($re->save()){
@@ -36,4 +36,25 @@ class ReviewController extends AuthController
 
     }
 
+    public function reviewDetial(Request $request){
+
+        $data=$this->checkValidate($request,[
+            'idiom_id'=>'required',
+        ]);
+        $re=Review::where('user_id',auth('api')->id())->first();
+        if (!in_array($data['idiom_id'],explode(',',$re->idiom_ids))){
+            $this->response()->error("还未学习过该成语",402);
+        }
+        $idiom=Idiom::with('level')->find($data['idiom_id']);
+        if ($idiom){
+            $idiom->level->count=Idiom::getCount($idiom->level_id);
+           return   $this->arrayResponse('success','200',$idiom);
+        }else{
+            return$this->response()->errorInternal('系统错误，请重试');
+        };
+
+
+
+
+    }
 }

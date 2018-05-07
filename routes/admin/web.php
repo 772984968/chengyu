@@ -15,8 +15,8 @@
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
-    //登陆逻辑
-    require_once __DIR__.'/login.php';
+        //登陆逻辑
+       require_once __DIR__.'/login.php';
 
         //后台资源首页
         Route::get('/','IndexController@index')->name('index');
