@@ -13,6 +13,7 @@ class LoginController extends BaseController
         return ;
     }
 
+    //登陆页
     public  function index(){
         return view('admin.login.index');
     }
@@ -23,10 +24,13 @@ class LoginController extends BaseController
      */
     public function login(AdminLogin $request)
     {
-         if (auth('admin')->attempt($request->validated())){
+        $credentials=[
+            'username'=>$request->username,
+            'password'=>$request->password,
+        ];
+         if (auth('admin')->attempt($credentials)){
                flash('登陆成功')->success();
-              // auth('admin')->login();
-               return redirect(route('index'));
+           return redirect(route('index'));
         }else{
             flash('账户与密码不匹配')->error();
         return    redirect()->route('login');
@@ -44,9 +48,10 @@ class LoginController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function logout()
     {
-        redirect()->route('login');
+        auth('admin')->logout();
+        return   redirect()->route('login');
 
     }
 }

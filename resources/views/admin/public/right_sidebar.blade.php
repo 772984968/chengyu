@@ -8,6 +8,7 @@
                     <i class="fa fa-gear"></i> 主题
                 </a>
             </li>
+            <!--
             <li class=""><a data-toggle="tab" href="#tab-2">
                     通知
                 </a>
@@ -16,6 +17,7 @@
                     项目进度
                 </a>
             </li>
+            -->
         </ul>
 
         <div class="tab-content">

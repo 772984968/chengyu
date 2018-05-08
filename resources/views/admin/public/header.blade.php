@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{$title}}</title>
 
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
@@ -14,7 +15,7 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
 
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
     <link href="{{asset('admin/css/bootstrap.min14ed.css?v=3.3.6')}}" rel="stylesheet">
    <link href="{{asset('admin/css/font-awesome.min93e3.css?v=4.4.0')}}" rel="stylesheet">
     <link href="{{asset('admin/css/animate.min.css')}}" rel="stylesheet">

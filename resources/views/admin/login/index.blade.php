@@ -20,8 +20,7 @@
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
                     </ul>
-                    <strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong>
-                </div>
+                    </div>
             </div>
 
             <div class="col-sm-5">
@@ -32,6 +31,8 @@
                     <p class="m-t-md">登录到H+后台主题UI框架</p>
                     <input type="text" class="form-control uname" placeholder="用户名" name="username" value="{{old('username')}}" />
                     <input type="password" class="form-control pword m-b" name="password" placeholder="密码" />
+                    <input type="text" class="form-control pword m-b" placeholder="验证码" name="captcha" value=""/><img src="{{ captcha_src('flat') }}" onclick="this.src='/captcha/flat?'+Math.random()">
+
                     <button class="btn btn-success btn-block">登录</button>
                 </form>
             </div>

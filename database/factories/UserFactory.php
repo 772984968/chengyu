@@ -22,5 +22,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
         'username'=>$faker->phoneNumber,
         'credits' =>$faker->numberBetween(0,10),
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
     ];
 });

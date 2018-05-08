@@ -19,9 +19,17 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
        require_once __DIR__.'/login.php';
 
         //后台资源首页
-        Route::get('/','IndexController@index')->name('index');
+        Route::get('index','IndexController@index')->name('index');
         //后台欢迎页
         Route::get('welcome','IndexController@welcome');
+        //等级管理
+        Route::resource('level','LevelController');
+        //意见反馈
+        Route::resource('feedback','FeedbackController');
+        //用户管理
+        Route::resource('user','UserController');
+        //成语管理
+        Route::resource('idiom','IdiomController');
 
 
 

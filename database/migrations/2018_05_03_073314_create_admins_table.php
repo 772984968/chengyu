@@ -17,6 +17,7 @@ class CreateAdminsTable extends Migration
             $table->increments('id');
             $table->string('username',25)->comment('用户名');
             $table->string('password',60)->comment('密码');
+            $table->string('remember_token')->nullable()->comment('记住我');
             $table->comment='管理员表';
             $table->timestamps();
         });

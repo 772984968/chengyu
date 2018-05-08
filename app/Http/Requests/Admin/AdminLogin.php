@@ -26,6 +26,7 @@ class AdminLogin extends FormRequest
         return [
             'username'=>'required',
             'password'=>'required',
+            'captcha'=>'required|captcha',
 
         ];
     }
@@ -34,6 +35,8 @@ class AdminLogin extends FormRequest
         return [
             'username.required'=>'用户名必须',
             'password.required'=>'密码必须',
+            'captcha.required'=>'验证码必须',
+            'captcha.captcha'=>'请输入正确的验证码',
         ];
 
     }

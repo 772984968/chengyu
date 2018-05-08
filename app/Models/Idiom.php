@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Idiom extends  Model
 {
-    protected  $fillable=['antonym','thesaurus'];
+    protected  $fillable=[
+        'antonym','thesaurus','name','spell'
+        ,'explain','derivation','pinyin'
+        ,'first_leter','last_word','antonym','story','level_id'];
     public function level(){
         return $this->belongsTo(Level::class)->select('level','id');
     }
