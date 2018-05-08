@@ -41,21 +41,20 @@
                         <a onclick="layer_show('添加','{{route($data['config']['create'])}}')" href="javascript:void(0);" class="btn btn-primary glyphicon glyphicon-plus "></a>
                     </div>
                     @endif
-                    <!--
+
                                        <div class="demoTable">  搜索：
                                            <div class="layui-input-inline" >
-
-
-                                               <select name="search" lay-verify="" class="layui-input">
-                                                  <option value=""></option>
-                                               </select>
+                   <select name="search" lay-verify="" class="layui-input">
+                       <option value="name">成语搜索</option>
+                       <option value="level">等级搜索</option>
+                   </select>
 
                         </div>
                         <div class="layui-inline">
                             <input class="layui-input" name="id" id="demoReload" autocomplete="off">
                         </div>
                         <button class="layui-btn" data-type="reload">搜索</button>
-                    </div>-->
+                    </div>
                     <div  class="layui-btn-group demoTable2">
                         <button class="layui-btn layui-btn-danger" data-type="getCheckData">删除</button>
                     </div>
@@ -141,6 +140,25 @@
 
                         }
                     });
+                //搜索重载
+                $('.demoTable .layui-btn').on('click', function(){
+                    var options=$("select[name='search']").val();
+                    var values=$("#demoReload").val();
+                    //方法重载
+                    table.reload('testReload', {
+                        where: {
+                            //设定异步数据接口的额外参数，任意设
+                            [options]:values,
+                        }
+                        ,page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                    });
+                });
+
+
+
+
                 //批量删除
                 $('.demoTable2 .layui-btn').on('click', function(){
                     var checkStatus = table.checkStatus('testReload')
@@ -175,6 +193,12 @@
 
             });
         </script>
+
+
+
+
+
+
 
         <script type="text/javascript">
             function layer_show(title,url){

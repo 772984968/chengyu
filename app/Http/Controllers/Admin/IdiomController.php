@@ -74,12 +74,22 @@ class IdiomController extends TemplateController
     }
     public function getData($request){
         $model= $this->model;
-        $page=$request->page??'1';
         $limit=$request->limit??'10';
         $query=$model->with('level');
         $count=$query->count();
+        $where=[];
+        if ($request->has('name')){
+            $name=$request->name;
+            $query->where('name','like',"%$name%");
+            }
+        if ($request->has('level')){
+            $rs=Level::where('level',$request->level)->first();
+            if ($rs){
+                $query->where('level_id',$rs->id);
+            }
+        }
+        $count=$query->count();
         $paginate=$query->orderByDesc('created_at')->paginate($limit);
-
         $paginate->transform(function ($item,$key){
             $item->level_id=$item->level->level;
             return $item;
@@ -105,7 +115,7 @@ class IdiomController extends TemplateController
             ['field'=>'last_word','title'=>'尾字'],
             ['field'=>'antonym','title'=>'近义词'],
             ['field'=>'thesaurus','title'=>'同义词'],
-            ['field'=>'level_id','title'=>'等级'],
+            ['field'=>'level_id','title'=>'等级','sort'=>'true'],
             ['field'=>'story','title'=>'故事'],
             ['field'=>'right','title'=>'数据操作','align'=>'center','toolbar'=>'#barDemo','width'=>300]
         ]];
