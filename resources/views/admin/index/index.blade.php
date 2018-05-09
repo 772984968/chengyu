@@ -1,4 +1,4 @@
-@component('admin.public.header',['title'=>'后台框架'])
+@component('admin.public.header',['title'=>'成语后台'])
     @slot('css')
 
     @endslot
