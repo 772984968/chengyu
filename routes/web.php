@@ -17,3 +17,6 @@ Route::get('/',function (){
 
     return redirect(route('login'));
 });
+Route::get('/admin',function (){
+    return redirect(route('login'));
+});

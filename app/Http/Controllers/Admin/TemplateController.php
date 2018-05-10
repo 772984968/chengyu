@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
-abstract class TemplateController extends Controller
+abstract class TemplateController extends BaseController
 {
 
     public function index(Request $request)

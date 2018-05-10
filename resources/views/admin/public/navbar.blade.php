@@ -63,6 +63,18 @@
             <li>
                 <a href="#">
                     <i class="fa fa fa-bar-chart-o"></i>
+                    <span class="nav-label">活动管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{route('activity.index')}}">活动中心</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa fa-bar-chart-o"></i>
                     <span class="nav-label">用户</span>
                     <span class="fa arrow"></span>
                 </a>
