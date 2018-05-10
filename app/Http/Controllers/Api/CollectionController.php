@@ -42,8 +42,25 @@ class CollectionController extends AuthController
         }else{
             return$this->response()->errorInternal('系统错误，请重试');
         };
+    }
+    //添加收藏
+    public function delCollection(Request $request){
 
+        $data=$this->checkValidate($request,[
+            'idiom_id'=>'required|exists:idioms,id',
+        ],[
+            'idiom_id.exists'=>'没有该成语信息',
 
+        ]);
+        $model=Collection::where(['user_id'=>auth('api')->id(),'idiom_id'=>$data['idiom_id']])->first();
+        if (!$model){
+            $this->response()->error("该成语不在收藏列表中",402);
+        }
+        if ($model->delete()){
+            return   $this->arrayResponse();
+        }else{
+            return$this->response()->errorInternal('系统错误，请重试');
+        };
     }
 
 }

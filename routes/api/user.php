@@ -15,6 +15,8 @@ $api->group(['middleware' => 'auth:api'], function ($api) {
     $api->get('collection','CollectionController@collection');
     //添加收藏
     $api->post('collection','CollectionController@setCollection');
+    //添加收藏
+    $api->delete('collection','CollectionController@delCollection');
 
 
     //添加成语近义词，反义词
