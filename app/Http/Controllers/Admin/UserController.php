@@ -33,7 +33,7 @@ class UserController extends TemplateController
             ['field'=>'username','title'=>'登陆名'],
             ['field'=>'email','title'=>'电子邮件'],
             ['field'=>'phone','title'=>'电话'],
-            ['field'=>'credits','title'=>'积分'],
+            ['field'=>'credits','title'=>'积分','sort'=>'true'],
             ['field'=>'created_at','title'=>'创建时间'],
             ['field'=>'right','title'=>'数据操作','align'=>'center','toolbar'=>'#barDemo','width'=>300]
         ]
