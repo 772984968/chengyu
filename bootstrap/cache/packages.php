@@ -64,6 +64,17 @@
       'Captcha' => 'Mews\\Captcha\\Facades\\Captcha',
     ),
   ),
+  'overtrue/laravel-wechat' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Overtrue\\LaravelWeChat\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'EasyWeChat' => 'Overtrue\\LaravelWeChat\\Facade',
+    ),
+  ),
   'spatie/laravel-permission' => 
   array (
     'providers' => 

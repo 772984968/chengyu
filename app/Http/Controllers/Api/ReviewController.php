@@ -36,6 +36,7 @@ class ReviewController extends AuthController
 
     }
 
+    //回顾详情
     public function reviewDetial(Request $request){
 
         $data=$this->checkValidate($request,[
@@ -47,8 +48,11 @@ class ReviewController extends AuthController
         }
         $idiom=Idiom::with('level')->find($data['idiom_id']);
         if ($idiom){
-            $idiom->level->count=Idiom::getCount($idiom->level_id);
-           return   $this->arrayResponse('success','200',$idiom);
+            if ($idiom->level){
+                $idiom->level->count=Idiom::getCount($idiom->level_id);
+            }
+
+            return   $this->arrayResponse('success','200',$idiom);
         }else{
             return$this->response()->errorInternal('系统错误，请重试');
         };

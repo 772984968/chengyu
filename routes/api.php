@@ -9,7 +9,7 @@ $api->version('v1', function ($api) {
         });
 
         //成语管理
-        $api->group(['prefix'=>'idiom'],function($api){
+        $api->group(['prefix'=>'idiom','middleware' => 'auth:api'],function($api){
             require_once __DIR__.'/api/idiom.php';
         });
         //回顾管理
@@ -18,7 +18,7 @@ $api->version('v1', function ($api) {
         });
 
         //常用类接口
-        $api->group(['prefix'=>'common'],function($api){
+        $api->group(['prefix'=>'common','middleware'=>'auth:api'],function($api){
             require_once __DIR__.'/api/common.php';
         });
 

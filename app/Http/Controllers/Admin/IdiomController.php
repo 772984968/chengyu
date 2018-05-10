@@ -76,8 +76,6 @@ class IdiomController extends TemplateController
         $model= $this->model;
         $limit=$request->limit??'10';
         $query=$model->with('level');
-        $count=$query->count();
-        $where=[];
         if ($request->has('name')){
             $name=$request->name;
             $query->where('name','like',"%$name%");
@@ -89,10 +87,10 @@ class IdiomController extends TemplateController
             }
         }
         $count=$query->count();
-        $paginate=$query->orderByDesc('created_at')->paginate($limit);
+        $paginate=$query->orderBy('id')->paginate($limit);
         $paginate->transform(function ($item,$key){
-            $item->level_id=$item->level->level;
-            return $item;
+                $item->level_id=Level::getName($item->level_id);
+                return $item;
               });
        $data=$paginate->toArray();
 

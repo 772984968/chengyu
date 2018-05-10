@@ -46,6 +46,7 @@
                                            <div class="layui-input-inline" >
                    <select name="search" lay-verify="" class="layui-input">
                        <option value="name">成语搜索</option>
+                       <option value="level">等级搜索</option>
                        </select>
 
                         </div>

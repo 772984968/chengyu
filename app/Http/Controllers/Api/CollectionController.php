@@ -6,6 +6,13 @@ use App\Models\Collection;
 use Illuminate\Http\Request;
 class CollectionController extends AuthController
 {
+    protected $model;
+    public function __construct()
+    {
+        $this->model=new Collection();
+
+    }
+
     //收藏列表
     public function collection(){
         $user=auth('api')->user();
@@ -18,15 +25,19 @@ class CollectionController extends AuthController
     //添加收藏
     public function setCollection(Request $request){
         $data=$this->checkValidate($request,[
-            'idiom_id'=>'required'
-        ]);
-        $re=Collection::where('user_id',auth('api')->id())->first();
+            'idiom_id'=>'required|exists:idioms,id',
+        ],[
+            'idiom_id.exists'=>'没有该成语信息',
 
-        if (in_array($data['idiom_id'],explode(',',$re->idiom_ids))){
+        ]);
+        $model=Collection::where(['user_id'=>auth('api')->id(),'idiom_id'=>$data['idiom_id']])->first();
+        if ($model){
           $this->response()->error("该成语已在收藏列表中",402);
         }
-        $re->idiom_ids=$re->idiom_ids.','.$data['idiom_id'];
-        if ($re->save()){
+        $this->model->idiom_id=$data['idiom_id'];
+        $this->model->user_id=auth('api')->id();
+        $this->model->level_id=Idiom::getLevelId($data['idiom_id']);
+        if ($this->model->save()){
          return   $this->arrayResponse();
         }else{
             return$this->response()->errorInternal('系统错误，请重试');
