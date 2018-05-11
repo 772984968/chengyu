@@ -32,14 +32,14 @@ class ActivityController extends TemplateController
         if ($model->save()){
             return $this->json();
         }
-
     }
-    public function create(){
-
-        return view('admin.activity.create');
+    public function update(ActivityFrom $request,$id){
+        $model=$this->model->find($id);
+        $model->fill($request->validated());
+        if ($model->save()){
+            return $this->json();
+        }
     }
-
-
     function getTitle()
     {
             return[[

@@ -62,9 +62,15 @@ abstract class TemplateController extends BaseController
         }else{
             return response()->json(['code'=>400,'msg'=>'删除失败']);
         }
-
-
     }
-
+    //展示编辑页
+    public function edit($id){
+        $model=$this->model::find($id);
+        return view('admin.'.''.$this->config['edit'],compact('model'));
+    }
+    //展示创建页
+    public function create(){
+        return view('admin.'.$this->config['create']);
+    }
 
 }
