@@ -135,7 +135,7 @@
                 , done: function (res) {
                     //如果上传失败
                     if (res.code ==0) {
-                        return layer.msg('上传失败');
+                        return layer.msg(res.msg);
                     }
                     $('input[name="title_url"]').val(res.src);
                     return layer.msg('上传成功');

@@ -15,7 +15,7 @@ class  Upload{
     public function __construct(){
         $this->allowFileExt=['mp3','txt','world','rar','mp4'];
         $this->allowImageExt=['jpeg','jpg','png','gif'];
-        $this->maxImageSize=3*1024*1024;
+        $this->maxImageSize=10*1024*1024;
         $this->maxFileSize=5*1024*1024;
        }
        //设置信息

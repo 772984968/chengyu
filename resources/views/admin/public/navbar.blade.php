@@ -70,6 +70,9 @@
                     <li>
                         <a class="J_menuItem" href="{{route('activity.index')}}">活动中心</a>
                     </li>
+                    <li>
+                        <a class="J_menuItem" href="{{route('activity.index')}}">活动详情</a>
+                    </li>
                 </ul>
             </li>
             <li>
