@@ -1,9 +1,12 @@
-@component('admin.public.header',['title'=>'用户登陆'])
-@slot('css')
+@extends('admin.layouts.admin')
+@section('_meta')
+    @include('admin.layouts._meta')
     <link href="{{asset('admin/css/login.min.css')}}" rel="stylesheet">
-@endslot
-@endcomponent
-<body class="signin">
+
+@endsection
+@section('title', '用户登陆')
+@section('content')
+    <body class="signin">
     <div class="signinpanel">
         <div class="row">
             <div class="col-sm-7">
@@ -20,7 +23,7 @@
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
                     </ul>
-                    </div>
+                </div>
             </div>
 
             <div class="col-sm-5">
@@ -43,7 +46,10 @@
             </div>
         </div>
     </div>
-  @component('admin/public/footer')
-    @slot('js')
-     @endslot
-@endcomponent
+    @component('admin/public/footer')
+
+    @endsection
+    @section('script')
+        @include('admin.layouts._script')
+    @stop
+

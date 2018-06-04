@@ -22,7 +22,7 @@ Route::group(['prefix'=>'/admin','namespace'=>'Admin'],function(){
            //后台资源首页
            Route::get('index','IndexController@index')->name('index');
            //后台欢迎页
-           Route::get('welcome','IndexController@welcome');
+           Route::get('welcome','IndexController@welcome')->name('welcome');
            //等级管理
            Route::resource('level','LevelController');
            //意见反馈
