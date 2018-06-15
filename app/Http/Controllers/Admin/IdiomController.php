@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\IdiomFrom;
+use App\Http\Requests\Admin\IdiomForm;
 use App\Models\Idiom;
 use App\Models\Level;
 use function foo\func;
@@ -30,7 +30,7 @@ class IdiomController extends TemplateController
     }
 
 
-    public function update(IdiomFrom $request, $id)
+    public function update(IdiomForm $request, $id)
     {
         $model=$this->model->find($id);
         $model->fill($request->all());
@@ -63,7 +63,7 @@ class IdiomController extends TemplateController
         return view('admin.idiom.index', ['data'=>$data]);
     }
 
-    public function store(IdiomFrom $request){
+    public function store(IdiomForm $request){
         $model=$this->model;
         $model->fill($request->all());
         if ($model->save()){
